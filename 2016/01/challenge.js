@@ -6,12 +6,12 @@ var x = 0;
 var y = 0;
 
 input.split(', ').forEach(sequence => {
-	var direction = sequence[0];
+  var direction = sequence[0];
   var distance = +sequence.substring(1);
 
   direction == 'L' ? orientation-- : orientation++;
 
- 	if (orientation > 3) {
+  if (orientation > 3) {
     orientation = 0;
   } else if (orientation < 0) {
     orientation = 3;
