@@ -14,12 +14,12 @@ while ($cursor < $length) {
 
     preg_match('/\(([0-9]+)x([0-9]+)\)/', $marker, $matches);
 
-    $total += $first - $cursor + $matches[1] * $matches[2];
+    $size += $first - $cursor + $matches[1] * $matches[2];
     $cursor = $first + $matches[1] + strlen($marker);
   } else {
-    $total += $length - $cursor;
+    $size += $length - $cursor;
     $cursor = $length;
   }
 }
 
-echo $total;
+echo $size;
