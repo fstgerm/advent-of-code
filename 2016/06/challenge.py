@@ -13,4 +13,4 @@ def decrypt(filename):
     print ''.join(map(lambda x: most_common(x), characters))
     print ''.join(map(lambda x: least_common(x), characters))
 
-decrypt(os.path.dirname(__file__) + '/input.txt')
+decrypt(os.getcwd() + '/input.txt')
