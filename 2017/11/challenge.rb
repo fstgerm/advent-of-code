@@ -2,33 +2,47 @@ fh = open 'input.txt'
 directions = fh.read.strip.split(',')
 fh.close
 
-Position = Struct.new(:x, :y, :z) do
+class Grid
+  attr_reader :furthest
+
+  def initialize()
+    @x = @y = @z = @furthest = 0
+  end
+
   def move(direction)
     case direction
     when "n"
-      self.y += 1
-      self.z -= 1
+      @y += 1
+      @z -= 1
     when "ne"
-      self.x += 1
-      self.z -= 1
+      @x += 1
+      @z -= 1
     when "se"
-      self.x += 1
-      self.y -= 1
+      @x += 1
+      @y -= 1
     when "s"
-      self.y -= 1
-      self.z += 1
+      @y -= 1
+      @z += 1
     when "sw"
-      self.x -= 1
-      self.z += 1
+      @x -= 1
+      @z += 1
     when "nw"
-      self.x -= 1
-      self.y += 1
+      @x -= 1
+      @y += 1
     end
+
+    if distance > @furthest
+      @furthest = distance
+    end
+  end
+
+  def distance()
+    return (@x.abs + @y.abs + @z.abs) / 2
   end
 end
 
-position = Position.new(0, 0, 0)
+grid = Grid.new()
+directions.each { |d| grid.move(d) }
 
-directions.each { |x| position.move(x) }
-
-puts (position.x.abs + position.y.abs + position.z.abs) / 2
+puts "Part 1 : #{grid.distance}"
+puts "Part 2 : #{grid.furthest}"
